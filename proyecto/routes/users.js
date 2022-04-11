@@ -8,10 +8,11 @@ router.get ('/register', registerController.register)
 
 // Login
 const loginController = require("../controllers/userControllers");
-router.get ('/login', loginController.login);
+router.get ('/', loginController.login);
 
 // Perfil
 const perfilController = require("../controllers/userControllers");
 router.get ('/perfil', perfilController.perfil);
 
 module.exports = router;
+
