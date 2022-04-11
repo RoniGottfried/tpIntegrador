@@ -3,14 +3,10 @@ const userController = {
       return res.render('login');
     },
     register: function (req, res) {
-        return res.render('perfil', {
-          autor: "Lucas, Feli y Roni"
-        });
+        return res.render('register');
     },
     perfil: function (req, res) {
-        return res.render('perfil', {
-          autor: "Lucas, Feli y Roni"
-        });
+        return res.render('perfil');
     },
     
   };

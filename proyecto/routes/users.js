@@ -1,18 +1,17 @@
 var express = require('express');
 var router = express.Router();
-
+const userController = require("../controllers/userControllers");
 
 // Register
-const registerController = require("../controllers/userControllers");
-router.get ('/register', registerController.register)
+router.get ('/register', userController.register)
 
 // Login
-const loginController = require("../controllers/userControllers");
-router.get ('/', loginController.login);
+
+router.get ('/login', userController.login);
 
 // Perfil
-const perfilController = require("../controllers/userControllers");
-router.get ('/perfil', perfilController.perfil);
+
+router.get ('/perfil', userController.perfil);
 
 module.exports = router;
 
