@@ -1,3 +1,5 @@
+let usuario = require('../db/usuarios.js')
+
 const userController = {
     login: function (req, res) {
       return res.render('login');
@@ -9,7 +11,7 @@ const userController = {
         return res.render('perfil');
     },
     perfilEdit: function (req, res) {
-      return res.render('perfil-edit');
+      return res.render('perfil-edit', {usuario});
   },
     
   };
