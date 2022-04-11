@@ -6,7 +6,7 @@ const comentariosController = require("../controllers/comentariosControllers");
 
 
 
-router.get('/cometarios', comentariosController.index);
+router.get('/', comentariosController.index);
 
 
 
