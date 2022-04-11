@@ -1,7 +1,13 @@
 const productsController = {
-    index: function (req, res) {
-      //let lista = ["Heroe1","Heroe2","Heroe3","Heroe4","Heroe5"]
+
+    producto: function (req, res) {
       return res.render('products')
+    },
+    add: function (req, res) {
+        return res.render('product-add');
+    },
+    buscarProducto: function (req, res) {
+        return res.render('search-results');
     },
     
   };

@@ -8,6 +8,9 @@ const userController = {
     perfil: function (req, res) {
         return res.render('perfil');
     },
+    perfilEdit: function (req, res) {
+      return res.render('perfil-edit');
+  },
     
   };
   
