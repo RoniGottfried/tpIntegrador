@@ -2,7 +2,7 @@ let comics = {
     lista: [
       {
         id:1,
-        img: "img/img1.jpg",
+        img: "",
         nombre: "Watchmen",
         descripcion: "Alan Moore y Dave Gibbons - DC",
         fecha: 1986,
