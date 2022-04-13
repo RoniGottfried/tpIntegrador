@@ -23,6 +23,7 @@ let usuario = {
         apellido: "Garcia",
         dni: "42895704",
         email: "mgarcia@udesa.edu.ar",
+        imagen: "/images/"
       },
     ],
 };
