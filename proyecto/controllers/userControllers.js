@@ -1,4 +1,4 @@
-let usuario = require('../db/usuarios.js')
+let usuarios = require('../db/usuarios.js')
 
 const userController = {
     login: function (req, res) {
@@ -8,10 +8,10 @@ const userController = {
         return res.render('register');
     },
     perfil: function (req, res) {
-        return res.render('perfil');
+        return res.render('perfil', {usuario: usuarios});
     },
     perfilEdit: function (req, res) {
-      return res.render('perfil-edit', {usuario});
+      return res.render('perfil-edit', {usuario: usuarios});
   },
     
   };
