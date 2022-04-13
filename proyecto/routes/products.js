@@ -4,7 +4,7 @@ const router = express.Router();
 const productsController = require("../controllers/productsController");
 
 // Productos
-router.get ('/products', productsController.producto);
+router.get ('/:id?', productsController.producto);
 
 // Agregado de Productos
 router.get ('/product-add', productsController.add);

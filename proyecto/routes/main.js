@@ -10,6 +10,4 @@ router.get('/', mainController.index);
 
 
 
-
-
 module.exports = router;
