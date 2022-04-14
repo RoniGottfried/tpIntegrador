@@ -1,10 +1,24 @@
 let comentarios = {
     lista: [
       {
-        id:1,
-        img: "/images/Watchmen-img.jpeg",
-        nombre: "Watchmen",
-        textoComentario: "",
+        usuario: 'Sebastian Chiterer',
+        comentario: 'Muy buen comic',
+      },
+      {
+        usuario: 'Lionel Messi',
+        comentario: 'Tremendo',
+      },
+      {
+        usuario: 'Sergio Aguero',
+        comentario: 'Genialllll',
+      },
+      {
+        usuario: 'Marcos Rojo',
+        comentario: 'GOLLLLL',
+      },
+      {
+        usuario: 'Feli Sin',
+        comentario: 'El mejorrrrr',
       },
     ],
 };
