@@ -1,7 +1,8 @@
+let products = require("../db/products")
 const productsController = {
 
     producto: function (req, res) {
-      return res.render('products')
+      return res.render('products', {products: products})
     },
     add: function (req, res) {
         return res.render('product-add');
