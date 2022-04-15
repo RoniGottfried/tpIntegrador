@@ -3,7 +3,7 @@ let comentarios = require("../db/comentarios")
 const productsController = {
 
     producto: function (req, res) {
-      return res.render('products', {products: products})
+      return res.render('products', {comics: products.lista, comentarios: comentarios.lista})
     },
     add: function (req, res) {
         return res.render('product-add');

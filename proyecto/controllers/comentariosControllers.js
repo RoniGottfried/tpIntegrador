@@ -1,8 +1,6 @@
 const comentariosController = {
     index: function (req, res) {
-
-      return res.send('comentarios')
-
+      return res.render('comentarios', {comentarios: comentarios})
     },
     
   };
