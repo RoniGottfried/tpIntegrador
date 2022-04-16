@@ -7,7 +7,7 @@ const productsController = require("../controllers/productsController");
 router.get ('/:id?', productsController.producto);
 
 // Agregado de Productos
-router.get ('/product-add', productsController.add);
+router.get ('/product/add', productsController.add);
 
 // Resultados de Busqueda
 router.get ('/search-results', productsController.buscarProducto);
