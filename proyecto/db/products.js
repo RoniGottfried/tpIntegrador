@@ -26,7 +26,7 @@ let comics = {
         img: "/images/VforVendetta-img.jpeg",
         nombre: "V de Vendetta",
         descripcion: "Alan Moore y David Lloyd - Vertigo / DC / Quality Comics",
-        fecha: (1982-1989),
+        fecha: 1982,
       },
       {
         id:5,
@@ -40,7 +40,7 @@ let comics = {
         img: "/images/SinCity-img.jpeg",
         nombre: "Sin City",
         descripcion: "Frank Miller - Dark Horse Comics",
-        fecha: (1991-2000),
+        fecha: 1991,
       },
       {
         id:7,
@@ -61,14 +61,14 @@ let comics = {
         img: "/images/ThePunisher-img.jpeg",
         nombre: "The Punisher",
         descripcion: "Garth Ennis y Goran Parlov - MAX Comics",
-        fecha: (2003-2008),
+        fecha: 2003,
       },
       {
         id:10,
         img: "/images/Lucifer-img.jpeg",
         nombre: "Lucifer",
         descripcion: "Mike Carey y Peter Gross - Vertigo",
-        fecha: (2000-2006),
+        fecha: 2000,
       },
     ],
 };

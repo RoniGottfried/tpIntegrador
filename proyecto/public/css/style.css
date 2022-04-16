@@ -10,7 +10,7 @@
   --gray: #666666;
   --light-gray: #ebebeb;
   --green: #39b54a;
-  --base-font-family: 'Roboto', sans-serif
+  font-family: 'Permanent Marker', cursive;
 }
 
 
@@ -43,6 +43,7 @@ a {
   display: inline-block;
   text-decoration: none;
   color: inherit;
+  font-weight: 400;
 }
 
 figure {
@@ -70,6 +71,7 @@ hr {
   padding: 15px 0;
   background-color: #bd2233;
   font-size: 12px;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .main-header_home-link,
@@ -173,6 +175,7 @@ hr {
   font-size: 2.4em;
   font-weight: 400;
   color: var(--gray);
+  font-family: 'Roboto', sans-serif
 }
 
 .product-box {
