@@ -13,7 +13,7 @@ const userController = {
         return res.render('perfil', {usuario: usuarios, comics: products.lista, comentarios: comentarios.lista});
     },
     perfilEdit: function (req, res) {
-      return res.render('perfil-edit', {usuario: usuarios.lista});
+      return res.render('perfil-edit', {usuario: usuarios});
   },
     
   };
