@@ -10,7 +10,7 @@ router.get ('/:id?', productsController.producto);
 router.get ('/product/add', productsController.add);
 
 // Resultados de Busqueda
-router.get ('/search-results', productsController.buscarProducto);
+router.get ('/search/results', productsController.buscarProducto);
 
 
 module.exports = router;
