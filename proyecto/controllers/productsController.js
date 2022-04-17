@@ -9,7 +9,7 @@ const productsController = {
         return res.render('product-add');
     },
     buscarProducto: function (req, res) {
-        return res.render('search-results');
+        return res.render('search-results', {comics: products.lista});
     },
     
   };
