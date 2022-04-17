@@ -1,45 +1,42 @@
 <%- include("./partials/head") %> 
 	<!-- product detail -->
-	<div class="container products-wrapper">
+	<div class="container-product-detail">
 		<div class="d-flex align-items-center">
+			<img class="img-product-detail" src="<%=comics[1].img %>" alt="cafetera moulinex">
+		</div>
+		<article class="product-detail-prueba">
 			<h2 class="products-title"><%= comics[1].nombre %></h2> 
-			<img src="<%=comics[1].img %>" alt="cafetera moulinex">
+			<img src="./images/products/default-image.png" alt="" class="product-detail-img">
+			<p class="product-detail-description"><%= comics[1].descripcion %></p>
 			<p class="product-detail-description">
-				<!-- Hay que poder hacer que esta linea te redirija a product add -->
 				<a href="/products/product/add">Editar</a>
 			</p>
-		</div>
-		<div class="product-detail">
-			<div class="row">
-				<article class="col-12 col-lg-8 product-detail-info">
-					<img src="./images/products/default-image.png" alt="" class="product-detail-img">
-					<p class="product-detail-description"><%= comics[1].descripcion %></p>
-				</article>
-
+		</article>
+	</div>
+	<div class="comment-detail">
+		<div class="row-detail">			
+			<% for(let i=0; i<comentarios.length; i++){ %>
+				<div class="comments-detail-prueba">
+					<section class="comments">
+						<article>
+							<img src="https://via.placeholder.com/35" alt="">
+							<div class="data">
+								<p class="user">
+								<strong> <a href="/users/register"><%= comentarios[i].usuario %>: </a> </strong>
+								<%= comentarios[i].comentario %></p>
+							</div>
+						</article>
+						
+					</section>
+				</div>
 				
-				<% for(let i=0; i<comentarios.length; i++){ %>
-					<div class="col-12 col-lg-4">
-						<section class="comments">
-							<article>
-								<img src="https://via.placeholder.com/35" alt="">
-								<div class="data">
-									<p class="user">
-									<strong> <a href="/users/register"><%= comentarios[i].usuario %>: </a> </strong>
-									<%= comentarios[i].comentario %></p>
-								</div>
-							</article>
-							
-						</section>
-					</div>
-					
-				<% } %>
+			<% } %>
 
 
-				<form class="form" action="/users/login" method="get">
-					<input class="form-input" type="text" value="" placeholder="Agregar comentario">
-					<button type="submit" class="buy-now-button">AGREGAR COMENTARIO</button>
-				</form>
-			</div>
+			<form class="form-detail" action="/users/login" method="get">
+				<input class="form-input" type="text" value="" placeholder="Agregar comentario">
+				<button type="submit" class="buy-now-button">AGREGAR COMENTARIO</button>
+			</form>
 		</div>
 	</div>
 	<!-- /product detail -->

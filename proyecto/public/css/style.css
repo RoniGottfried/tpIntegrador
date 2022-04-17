@@ -302,10 +302,17 @@ hr {
 
 
 /*====== Product Detail ======*/
+.container-product-detail {
+  display: flex;
+  align-content: center;
+  align-items: stretch;
+  justify-content: center;
+}
 .product-detail {
   background-color: #ffffff;
   border-radius: 8px;
   overflow: hidden;
+  padding-left: 8px;
 }
 
 .product-detail-img {
@@ -313,11 +320,20 @@ hr {
   display: block;
   margin: auto;
 }
-
+.img-product-detail{
+  width: 100%;
+}
 .product-detail-info {
   border-right: 1px solid var(--light-gray);
   padding: 15px;
   /* height: 100%; */
+}
+
+.product-detail-prueba {
+  border-right: 1px solid var(--light-gray);
+  padding: 15px;
+  /* height: 100%; */
+  background-color: lightgray;
 }
 
 .product-detail-title {
@@ -335,11 +351,35 @@ hr {
   font-size: 5.5em;
   margin: 10px 0;
 }
+
 .product-detail .form{
   padding: 0 15px;
   display: flex;
   flex-direction: column;
 }
+
+.comment-detail{
+  background-color: #bd2233;
+}
+
+.row-detail{
+  display: flex;
+  align-content: stretch;
+}
+
+.comments-detail-prueba{
+  background-color: #bd2233;
+  width: 25%;
+  border-color: black;
+}
+
+.form-detail{
+  width: 25%;
+  margin-top: 7px;
+  padding-right: 8px;
+  padding-top: 8px;
+}
+
 .small {
   font-size: 1.8em;
   color: var(--green);
@@ -405,15 +445,18 @@ hr {
 }
 .comments article{
   margin-bottom: 7.5px;
-  padding-bottom: 7.5px;
-  border-bottom: 1px solid #dcdcdc;
+  padding-top: 7.5px;
   display: flex;
   justify-content: space-between;
+  background-color: lightgrey;
+  border-radius: 7px;
 }
 .comments img{
   width: 40px;
   height: 40px;
   border-radius: 50%;
+  padding-left: 4px;
+  padding-top: 1px;
 }
 .comments .data{
   width: 85%;
@@ -425,6 +468,7 @@ hr {
 }
 .comments .user{
   font-size: 1.7em;
+  margin-left: 10px;
 }
 
 /*====== Formularios ======*/
