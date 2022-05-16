@@ -1,3 +1,4 @@
+const db = require('../database/models');
 let usuarios = require('../db/usuarios.js')
 let products = require('../db/products')
 let comentarios = require('../db/usuarios')
