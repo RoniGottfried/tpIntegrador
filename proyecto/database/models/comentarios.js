@@ -1,5 +1,5 @@
 module.exports = (sequelize, dataTypes)=>{
-    let alias = "Comics";
+    let alias = "Comentarios";
     let cols = {
         
         id: {
@@ -8,23 +8,19 @@ module.exports = (sequelize, dataTypes)=>{
             autoincrement: true,
         },
 
-        name_: {
-            type: dataTypes.STRING(50),
+        text_: {
+            type: dataTypes.STRING(500),
         },
 
         created_at: {
             type: dataTypes.DATE
         },
 
-        description: {
-            type: dataTypes.STRING(500)
-        },
-
-        url_image: {
-            type: dataTypes.STRING(250)
-        },
-
         usuario_id: {
+            type: dataTypes.INTEGER
+        },
+
+        comic_id: {
             type: dataTypes.INTEGER
         },
 
@@ -34,11 +30,11 @@ module.exports = (sequelize, dataTypes)=>{
     }
    
     let config = {
-       tableName: 'comics', // No coincide con el modelo
+       tableName: 'comentarios', // No coincide con el modelo
        timestamps: true
     }
    
-    const comics = sequelize.define(alias, cols, config)
-    return comics;
+    const comentarios = sequelize.define(alias, cols, config)
+    return comentarios;
    
    }
