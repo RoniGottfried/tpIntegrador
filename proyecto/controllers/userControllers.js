@@ -7,9 +7,6 @@ let products = require('../db/products')
 let comentarios = require('../db/usuarios')
 
 const userController = {
-    login: function (req, res) {
-      return res.render('login');
-    },
     register: function (req, res) {
         return res.render('register');
     },
@@ -64,6 +61,19 @@ const userController = {
                 }
             }
             )
+        }
+    },
+    login: function (req, res) {
+        return res.render('login');
+    },
+    loginProcess: function(req, res){
+        let errors = {};
+
+        if(usuarios == null){
+            //cargo el mensaje del error
+            errors.message = 'El email no existe'
+            res.locals.errors = errors
+            return res.render('login')
         }
     },
     perfil: function (req, res) {
