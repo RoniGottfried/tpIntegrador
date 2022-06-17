@@ -1,4 +1,10 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<!-- Include Head -->
 <%- include("./partials/head") %> 
+
+<body>
 
 	<!-- Novedades -->
 	<div class="container products-wrapper">
@@ -6,77 +12,53 @@
 			<div class="col-12">
 				<h2 class="products-title">Registrate</h2>
 			</div>
-			<!-- Show the "ultimos" products -->
-			<h2 class="col-12"> <i>/////////////////////////////////////////
-				<form action="" method="get">
-					<div>
-						<label for="email">Email:</label>
-						<input name="email" type="email">
-					</div>
-					<div>
-						<label for="usuario">Usuario:</label>
-						<input name="usuario" type="text">
-					</div>
-					<div>
-						<label for="email">Contraseña:</label>
-						<input name="password" type="password">
-					</div>
-					<div>
-						<label for="nacimiento">Fecha de nacimiento:</label>
-						<input type="date" name="nacimiento">
-					</div>
-					<div>
-						<label for="dni">Nro de documento:</label>
-						<input type="number" name="dni">
-					</div>
-					<div>
-						<label for="foto">Foto perfil:</label>
-						<input type="file" name="foto">
-					</div>
-					<div>
-						<label for="recordatorio">Recordar datos</label>
-						<input type="checkbox" name="recordatorio">
-					</div>
-					<div>
-						<button type="submit">Ingresar</button>
-					</div>
-				</form>
-			</h2>
 
+			<h2 class="col-12"> 
+				<div class="containerForm">
+					<div class="contact-form">
+						<form action="/usuarios/registro" method="POST" enctype="multipart/form-data">
+							<p>
+								<label>NOMBRE DE USUARIO</label>
+								<input type="text" name="usuario">
+							</p>
+							<p>
+								<label>EMAIL</label>
+								<input type="email" name="mail">
+							</p>
+							<p>
+								<label>CONSTRASEÑA</label>
+								<input type="password" name="password">
+							</p>
+							<p>
+								<label>REPETIR CONSTRASEÑA</label>
+								<input type="password" name="retypePassword">
+							</p>
+							<p>
+								<label>FECHA DE NACIMIENTO</label>
+								<input type="date" name="fecha_nacimiento">
+							</p>
+							<p>
+								<label>FOTO DE PERFIL</label>
+								<input type="file" name="image_profile">
+								<% if(locals.errors) { %>
+									<p class="error"> <%= errors.message %>  </p>
+								<% } %> 
+							</p>
+							<p class="block">
+								<button type="submit">
+									REGISTRARME
+								</button>
+							</p>
+						</form>
+					</div>
+				</div>
+			</h2>
+		</div>		
+	</div>
 
 	<!-- footer -->
-	<footer class="main-footer">
-		<div class="container">
-			<div class="row">
-				<div class="col-12 col-lg-4">
-					<article class="footer-data">
-						<i class="fas fa-credit-card"></i>
-						<h2>Pagá con tarjeta o en efectivo</h2>
-						<p>Con Mercado Liebre Cash, tenés cuotas sin interés con tarjeta o efectivo en puntos de pago.
-							¡Y
-							siempre es seguro!</p>
-					</article>
-				</div>
-				<div class="col-12 col-lg-4">
-					<article class="footer-data">
-						<i class="fas fa-gift"></i>
-						<h2>Envío gratis desde $ 1.999</h2>
-						<p>Solo por estar registrado en Mercado Liebre tenés envíos gratis en miles de productos. Es un
-							beneficio de Mercado Puntos.</p>
-					</article>
-				</div>
-				<div class="col-12 col-lg-4">
-					<article class="footer-data">
-						<i class="fas fa-user-shield"></i>
-						<h2>Seguridad, de principio a fin</h2>
-						<p>¿No te gusta? ¡Devolvelo! En Mercado Liebre, no hay nada que no puedas hacer, porque estás
-							siempre protegido.</p>
-					</article>
-				</div>
-			</div>
-		</div>
-	</footer>
-	<!-- /footer -->
+	<%- include("./partials/footer") %> 
+
 </body>
 
 </html>

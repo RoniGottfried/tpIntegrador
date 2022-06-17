@@ -6,6 +6,7 @@ module.exports = (sequelize, dataTypes)=>{
             type: dataTypes.INTEGER,
             primaryKey: true,
             autoincrement: true,
+            allowNull: false,
         },
 
         name_: {
@@ -39,6 +40,7 @@ module.exports = (sequelize, dataTypes)=>{
     }
    
     const comics = sequelize.define(alias, cols, config)
+
     return comics;
    
    }

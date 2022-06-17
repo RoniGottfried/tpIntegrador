@@ -6,6 +6,7 @@ module.exports = (sequelize, dataTypes)=>{
             type: dataTypes.INTEGER,
             primaryKey: true,
             autoincrement: true,
+            allowNull: false,
         },
 
         text_: {
@@ -35,6 +36,7 @@ module.exports = (sequelize, dataTypes)=>{
     }
    
     const comentarios = sequelize.define(alias, cols, config)
+
     return comentarios;
    
    }

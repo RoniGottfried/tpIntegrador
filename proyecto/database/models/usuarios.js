@@ -1,6 +1,5 @@
 module.exports = (sequelize, dataTypes) => {
 
-
     let alias = "usuarios";
     let cols = {
     
@@ -46,19 +45,23 @@ module.exports = (sequelize, dataTypes) => {
         },
 
         created_at: {
-            type: dataTypes.DATE
+            type: dataTypes.DATE,
+            allowNull:true,
         },
 
         updated_at: {
-            type: dataTypes.DATE
+            type: dataTypes.DATE,
+            allowNull:true,
         }
     } 
     
     let config = {
         tableName: "usuarios",
-        timestamps: true
+        timestamps: true,
+        underscored: true
     };
 
     const usuarios = sequelize.define(alias, cols, config)
+
     return usuarios;
 }

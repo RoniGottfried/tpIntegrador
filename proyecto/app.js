@@ -8,6 +8,8 @@ var mainRouter = require('./routes/main');
 var usersRouter = require('./routes/users');
 var productsRouter = require('./routes/products');
 var comentariosRouter = require('./routes/comentarios')
+const db = require('./database/models');
+const usuarios = db.Usuarios //Es el alias del modelo
 
 var app = express();
 
