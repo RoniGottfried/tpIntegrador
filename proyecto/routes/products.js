@@ -12,7 +12,7 @@ router.get ('/product/add', productsController.add);
 // Resultados de Busqueda
 router.get ('/search/results', productsController.buscarProducto);
 
-router.get ('/nombre-comic', productsController.nombreProducto);
+router.get ('/search/results', productsController.search);
 
 
 module.exports = router;

@@ -1,7 +1,10 @@
 const db = require("../database/models");
 
-let products = require("../db/products")
-let comentarios = require("../db/comentarios")
+const usuarios = db.usuarios;
+const comics = db.comics;
+const comentarios = db.comentarios;
+const op = db.Sequelize.Op;
+
 const productsController = {
 
     producto: function (req, res) {
@@ -13,12 +16,17 @@ const productsController = {
     buscarProducto: function (req, res) {
         return res.render('search-results', {comics: products.lista});
     },
-    nombreProducto: function(req, res) {
-        db.Comics.findAll()
-          .then(resultado => {
-              res.send(resultado)
-          })
+    search: function (req, res) {
+      const id = req.query.search;
+      db.Comics.findAll( {
+        where: [
+          { titulo: {[op.like]: id}}
+        ]
+      })
+      .then((resultado)=> {
+        return res.render('search-results', {comics: resultado})
+      })
     },
-  };
-  
+  }
+
   module.exports = productsController;
