@@ -13,19 +13,12 @@ const productsController = {
     add: function (req, res) {
         return res.render('product-add');
     },
-    buscarProducto: function (req, res) {
-        return res.render('search-results', {comics: products.lista});
-    },
-    search: function (req, res) {
+    searchId: function (req, res) {
       const id = req.query.search;
-      db.Comics.findAll( {
-        where: [
-          { titulo: {[op.like]: id}}
-        ]
-      })
-      .then((resultado)=> {
-        return res.render('search-results', {comics: resultado})
-      })
+        db.Comics.findAll()
+         .then((resultado) => {
+            res.render('search-results', { comics: resultado })
+         });
     },
   }
 

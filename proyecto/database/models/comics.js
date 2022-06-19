@@ -1,3 +1,5 @@
+const { underscoredIf } = require("sequelize/types/utils");
+
 module.exports = (sequelize, dataTypes)=>{
     let alias = "Comics";
     let cols = {
@@ -14,7 +16,8 @@ module.exports = (sequelize, dataTypes)=>{
         },
 
         created_at: {
-            type: dataTypes.DATE
+            type: dataTypes.DATE,
+            allowNull: true
         },
 
         description: {
@@ -36,7 +39,8 @@ module.exports = (sequelize, dataTypes)=>{
    
     let config = {
        tableName: 'comics', // No coincide con el modelo
-       timestamps: true
+       timestamps: true,
+       underscored: true
     }
    
     const comics = sequelize.define(alias, cols, config)
