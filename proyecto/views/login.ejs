@@ -19,7 +19,10 @@
 				</div>
 				<div>
 					<label for="email">Contraseña:</label>
-					<input type="text" name="password" type="password">
+					<input name="password" type="password">
+					<% if(locals.errors) { %>
+						<p class="error"> <%= errors.message %>  </p>
+					<% } %>
 				</div>
 				<div>
 					<label for="recordatorio">Recordar datos</label>
