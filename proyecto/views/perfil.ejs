@@ -5,12 +5,12 @@
 	<section class="info-usuario container products-wrapper">
 		<div class="row">
 			<div class="foto-perfil">
-				<img src="<%=usuario.lista[3].imagen%>" alt="foto de perfil" class="foto-perfil">
+				<img src="/public/images/<% data.avatar %>" alt="foto de <% data.usuarios %>>" class="foto-perfil">
 			</div>
 			<div class="data-container col-6">
 				<div class="d-flex align-items-center ">
-					<h1 class="main-title"><%=usuario.lista[3].nombre%> <%=usuario.lista[3].apellido%> 
-						<a href="/users/perfil/edit">
+					<h1 class="main-title"> <%= data.name %> 
+						<a href="/users/perfil-edit/<%= data.id %>"></a>
 							<i class="fas fa-cog"></i>
 						</a>
 					</h1>

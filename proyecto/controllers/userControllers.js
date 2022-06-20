@@ -82,12 +82,103 @@ const userController = {
         }
         })
     },
-    perfil: function (req, res) {
-        return res.render('perfil', {usuario: usuarios, comics: products.lista, comentarios: comentarios.lista});
+    perfil: function (req,res) {
+        const id = req.params.id
+        db.Usuarios.findByPk(id,{
+            include:[
+                {
+                    association: 'comentarios',
+                    include: {
+                        association: 'usuarios'
+                    }
+                },
+                {
+                    association: 'comics',
+                    include: {
+                        association: "comentarios"
+                    }
+                },
+            ]
+        })
+        .then( (data) => {
+            if (data == null) {
+                return res.redirect('/')
+            } else {
+                return res.render('perfil', { data:data })
+            }
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+
     },
-    perfilEdit: function (req, res) {
-      return res.render('perfil-edit', {usuario: usuarios});
-  },
+    perfilEdit: function (req,res) {
+        let id = req.params.id
+
+        if (req.session.usarios) {
+            if (id != req.session.usuarios.uduario_id) {
+                return res.redirect(`/usuarios/perfil-edit/${req.session.usuarios.usuario_id}`)
+            } else {
+                usuarios.findByPk(id, {
+                        include: [
+                            //relación comentario producto.
+                            {
+                                association: 'comentarios'
+                            },
+                            // relación producto usuario                                
+                            {
+                                association: 'comics'
+                            }
+                        ]
+                    })
+                    .then(data => {
+                        if (data == null) {
+                            return res.redirect('/')
+                        } else {
+                            return res.render('perfil-edit', { data: data })
+                        }
+                    }) 
+                    .catch(error => {
+                        console.log(error)
+                    })
+            } 
+        } else {
+            return res.redirect('/usuarios/login')
+        }
+    },
+    perfilStore: function(req,res){
+        const usuarios = {
+            nombre: req.body.name,
+            mail: req.body.mail,
+            password: bcrypt.hashSync(req.body.password, 12),
+            fecha_de_nacimiento: req.body.fecha_de_nacimiento,
+            documento: req.body.documento,
+            avatar: "",
+        }
+
+        if (req.file == undefined) {
+            usuarios.avatar = req.session.usuarios.avatar;
+        } else {
+            usuarios.avatar = req.file.filename;
+        }
+
+        db.Usuarios.update(user, {
+                where: {
+                    id: req.session.usuarios.id
+                }
+            })
+            .then(function(){
+
+                usuarios.id = req.session.usuarios.id
+
+                req.session.usuarios = usuarios /* Probar sin esto o usando abajo el req.session.usser.id */
+
+                return res.redirect( `/usuarios/perfil/${usuarios.id}` )
+            })
+            .catch(error => {
+                console.log(error)
+            }) 
+    }
     
   };
   

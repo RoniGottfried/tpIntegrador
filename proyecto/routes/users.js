@@ -12,7 +12,9 @@ router.get ('/login', userController.login);
 router.get ('/perfil', userController.perfil);
 
 // Perfil Edit
-router.get ('/perfil/edit', userController.perfilEdit);
+router.get('/perfil-edit/:id', userController.perfilEdit);
+router.post('/perfil-edit/profileStore' ,userController.perfilStore)
+
 
 
 
