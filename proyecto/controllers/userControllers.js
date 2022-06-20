@@ -67,6 +67,11 @@ const userController = {
         return res.render('login');
     },
     loginProcess: function(req, res){
+        //hacemos que se busqye el usuario que se quiere loguear
+        users.findOne({
+            where: [{mail: req.body.mail}]
+        })
+        .then( user => {
         let errors = {};
 
         if(usuarios == null){
@@ -75,6 +80,7 @@ const userController = {
             res.locals.errors = errors
             return res.render('login')
         }
+        })
     },
     perfil: function (req, res) {
         return res.render('perfil', {usuario: usuarios, comics: products.lista, comentarios: comentarios.lista});
