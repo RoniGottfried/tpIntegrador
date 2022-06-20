@@ -1,4 +1,4 @@
-const { underscoredIf } = require("sequelize/types/utils");
+
 
 module.exports = (sequelize, dataTypes)=>{
     let alias = "Comics";

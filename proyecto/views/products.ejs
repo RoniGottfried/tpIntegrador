@@ -2,12 +2,12 @@
 	<!-- product detail -->
 	<div class="container-product-detail">
 		<div class="d-flex align-items-center">
-			<img class="img-product-detail" src="<%=comics[1].img %>" alt="cafetera moulinex">
+			<img class="img-product-detail" src="<%= Comics.lista[1].img %>" alt="cafetera moulinex">
 		</div>
 		<article class="product-detail-prueba">
-			<h2 class="products-title"><%= comics[1].nombre %></h2> 
+			<h2 class="products-title"><%= Comics.lista[1].nombre %></h2> 
 			<img src="./images/products/default-image.png" alt="" class="product-detail-img">
-			<p class="product-detail-description"><%= comics[1].descripcion %></p>
+			<p class="product-detail-description"><%= Comics.lista[1].descripcion %></p>
 			<p class="product-detail-description">
 				<a href="/products/product/add">Editar</a>
 			</p>

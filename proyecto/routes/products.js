@@ -11,7 +11,7 @@ router.get ('/product/add', productsController.add);
 
 // Resultados de Busqueda
 
-router.get ('/search/results', productsController.searchId);
+router.get ('/search/results', productsController.search);
 
 
 
