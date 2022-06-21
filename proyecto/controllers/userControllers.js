@@ -1,7 +1,7 @@
 const bcrypt = require('bcryptjs');
 const { response } = require('../app');
 const db = require("../database/models");
-const usuarios = db.usuarios
+const users = db.Usuarios
 
 /* let usuarios = require('../db/users.js') */
 /* let products = require('../db/products')
@@ -43,7 +43,7 @@ const userController = {
             res.locals.errors = errors; // Guardar errors en locals
             return res.render('register') */
         }else {
-            usuarios.findOne({
+            users.findOne({
                 where: {mail: req.body.mail}
             })
             .then(function(usuarios){
@@ -58,7 +58,7 @@ const userController = {
                         password: bcrypt.hashSync(req.body.password, 10),
                         avatar: 'req.file.filename'
                     }
-                    usuarios.create(usuario)
+                    users.create(usuario)
                         .then(usuarios => {
                             return res.redirect('/')
                         })

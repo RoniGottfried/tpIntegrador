@@ -12,6 +12,30 @@ const productsController = {
     add: function (req, res) {
         return res.render('product-add');
     },
+    detail: function(req, res){
+        const id = req.params.id;
+        
+        Comics.findByPk(id, {
+            include: [  //relación comentario producto.
+                { association: 'comentarios',
+                    include: { association: 'usuarios' },
+                },                           
+                { association: 'usuarios' }
+            ],
+            order: [['comentarios', 'createdAt', 'DESC']]
+        })
+            .then(data => {
+                //Si no hay producto que coincida con el id, redirecciona a home.
+                if (data == null) {
+                    return res.redirect('/')
+                } else {
+                    return res.render('products', { data: data })
+                }
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    },
     search: (req, res) => {
       const buscarProductos = req.query.search; // Obtengo la info de la querystring.
       const errors = {}
