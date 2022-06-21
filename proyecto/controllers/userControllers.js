@@ -27,10 +27,10 @@ const userController = {
             errors.message = "La contraseña es obligatoria";
             res.locals.errors = errors; // Guardar errors en locals
             return res.render('register')
-        } /* else if (req.body.password.length < 3) {// requisitos contrasena
+        }  else if (req.body.password.length < 3) {// requisitos contrasena
             errors.message = "La contraseña debe tener mas de 3 caracteres";
             return res.render('register')  
-        } */ else if(req.body.retypePassword == ""){
+        }  else if(req.body.retypePassword == ""){
             errors.message = "La contraseña es obligatoria";
             res.locals.errors = errors; // Guardar errors en locals
             return res.render('register')
