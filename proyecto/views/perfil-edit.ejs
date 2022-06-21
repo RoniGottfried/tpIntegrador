@@ -13,7 +13,43 @@
 				<p><%=usuario.lista[3].email%></p>
 			</div>
 			<!-- Show the "ultimos" products -->
-	
+		</div>	
+	</div>
+
+	<!--Formulario de edicion de datos de perfil  -->
+	<main class="main-registro">
+		<div class="div-registro">
+			<form class="form-register" action="/usuarios/perfil-edit/perfilStore" method="POST" enctype="multipart/form-data">
+				<div>
+					<label> Editar Nombre: </label>
+					<input type="text" name="name" value="">
+				</div>
+				<div>
+					<label>Editar Email:</label>
+					<input type="mail" name="mail" value="">
+				</div>
+				<div>
+					<label>Editar Contraseña:</label>
+					<input type="text" name="password" value="">
+				</div>
+				<div>
+					<label>Editar Fecha de Nacimiento:</label>
+					<input type="date" name="fecha_de_nacimiento" value="">
+				</div>
+				<div>
+					<label>Editar Número de Documento:</label>
+					<input type="number" name="documento" value="">
+				</div>
+				<div>
+					<label>Cambiar Foto de Perfil:</label>
+					<input type="file" name="avatar" value="">
+				</div>
+				<button type="submit">Enviar</button>
+			</form>
+		</div>
+	</main>
+<!--Formulario de edicion de datos de perfil  -->	
+
 
 
 	<!-- footer -->
