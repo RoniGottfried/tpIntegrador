@@ -17,17 +17,14 @@ module.exports = (sequelize, dataTypes) => {
 
         apellido: {
             type: dataTypes.STRING(50),
-            allowNull: false,
         },
 
         documento: {
             type: dataTypes.INTEGER(10),
-            allowNull: false,
         },
 
         fecha_de_nacimiento: {
             type: dataTypes.DATE,
-            allowNull: false,
         },
         
         password: {
@@ -46,12 +43,10 @@ module.exports = (sequelize, dataTypes) => {
 
         created_at: {
             type: dataTypes.DATE,
-            allowNull:true,
         },
 
         updated_at: {
             type: dataTypes.DATE,
-            allowNull:true,
         }
     } 
     

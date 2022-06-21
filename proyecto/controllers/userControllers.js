@@ -16,10 +16,10 @@ const userController = {
             return res.render('register');
         }   
     },
-    registerAct: function(req, res) {
+    registerProcess: function(req, res) {
         let errors = {}
         // por si no escribe mail
-        if(req.body.email == ""){
+        if(req.body.mail == ""){
             errors.message = "El email es obligatorio";
             res.locals.errors = errors; // Guardar errors en locals
             return res.render('register')
@@ -44,7 +44,7 @@ const userController = {
             return res.render('register') */
         }else {
             usuarios.findOne({
-                where: [{mail: req.body.email}]
+                where: {mail: req.body.mail}
             })
             .then(function(usuarios){
                 if(usuarios != null){
@@ -56,10 +56,10 @@ const userController = {
                         nombre: req.body.nombre,
                         mail: req.body.mail,
                         password: bcrypt.hashSync(req.body.password, 10),
-                        avatar: req.file.filename
+                        avatar: 'req.file.filename'
                     }
                     usuarios.create(usuario)
-                        .then(usuario => {
+                        .then(usuarios => {
                             return res.redirect('/')
                         })
                         .catch(e=>{
