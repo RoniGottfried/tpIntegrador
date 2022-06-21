@@ -16,14 +16,14 @@
 			<h2 class="col-12"> 
 				<div class="containerForm">
 					<div class="contact-form">
-						<form action="/usuarios/registro" method="POST" enctype="multipart/form-data">
+						<form action="/users/register" method="POST" enctype="multipart/form-data">
 							<p>
 								<label>NOMBRE DE USUARIO</label>
-								<input type="text" name="usuario">
+								<input type="text" name="nombre">
 							</p>
 							<p>
 								<label>EMAIL</label>
-								<input type="email" name="mail">
+								<input type="email" name="email">
 							</p>
 							<p>
 								<label>CONSTRASEÑA</label>
@@ -40,10 +40,10 @@
 							<p>
 								<label>FOTO DE PERFIL</label>
 								<input type="file" name="image_profile">
-								<% if(locals.errors) { %>
-									<p class="error"> <%= errors.message %>  </p>
-								<% } %> 
 							</p>
+							<% if(locals.errors) { %>
+								<p class="error"> <%= errors.message %>  </p>
+							<% } %> 
 							<p class="block">
 								<button type="submit">
 									REGISTRARME
