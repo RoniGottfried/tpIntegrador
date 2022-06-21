@@ -4,8 +4,8 @@ const db = require("../database/models");
 const usuarios = db.usuarios
 
 /* let usuarios = require('../db/users.js') */
-let products = require('../db/products')
-let comentarios = require('../db/usuarios')
+/* let products = require('../db/products')
+let comentarios = require('../db/usuarios') */
 
 const userController = {
     register: function (req, res) {
@@ -52,8 +52,8 @@ const userController = {
                     return res.render('register')                
                 }else {
                     let usuario = {
-                        nombre: req.body.name,
-                        mail: req.body.email,
+                        nombre: req.body.nombre,
+                        mail: req.body.mail,
                         password: bcrypt.hashSync(req.body.password, 10),
                         avatar: req.file.filename
                     }
