@@ -31,6 +31,12 @@ app.use(session({
   saveUninitialized: true
 }))
 
+//pasar datos de session a locals
+app.use(function(req, res, next){
+  res.locals.usuarios = req.session.usuarios
+  return next()
+})
+
 app.use('/', mainRouter);
 app.use('/users', usersRouter);
 app.use('/products', productsRouter);

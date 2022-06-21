@@ -1,4 +1,5 @@
-const bcrypt = require('bcryptjs')
+const bcrypt = require('bcryptjs');
+const { response } = require('../app');
 const db = require("../database/models");
 const usuarios = db.usuarios
 
@@ -8,7 +9,12 @@ let comentarios = require('../db/usuarios')
 
 const userController = {
     register: function (req, res) {
-        return res.render('register');
+        // if de si estas ya registrado
+        if(req.session.usuario !== undefined){
+            return res.redirect('/')
+        }else{
+            return res.render('register');
+        }   
     },
     registerAct: function(req, res) {
         let errors = {}
@@ -73,6 +79,7 @@ const userController = {
             //sea igual al mail que se pone en el input (email)
             where: [{mail: req.body.email}]
         })
+        // .then porque en sequalize son todos metodos asincronicos
         .then( usuarios => {
         let errors = {};
         if(usuarios == null){
@@ -86,8 +93,11 @@ const userController = {
             errors.message = "La contraseña es incorrecta"
             res.locals.errors = errors
             return res.render('login');
+        } else {
+            req.session.user = user;
         }
         })
+        .catch(error => console.log(error))
     },
     perfil: function (req,res) {
         const id = req.params.id

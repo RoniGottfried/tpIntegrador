@@ -59,8 +59,9 @@
 				</ul>
 	
 				<ul class="right-navbar">
-					<li><a href="/users/perfil">
-						<%=usuario.lista[3].nombre%> <%=usuario.lista[3].apellido%><i class="fas fa-user"></i>
+					<% if(locals.usuario) { %>
+					<li><a href="/users/perfil/">
+						Hola! <%= locals.usuario.usuario %>   <i class="fas fa-user"></i>
 						</a>
 					</li>
 					<li>

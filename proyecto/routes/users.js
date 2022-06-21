@@ -14,7 +14,7 @@ router.get ('/perfil', userController.perfil);
 
 // Perfil Edit
 router.get('/perfil-edit/:id', userController.perfilEdit);
-router.post('/perfil-edit/profileStore' ,userController.perfilStore)
+router.post('/perfil-edit/profileStore', userController.perfilStore)
 
 
 
