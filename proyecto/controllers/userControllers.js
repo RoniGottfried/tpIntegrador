@@ -72,7 +72,7 @@ const userController = {
     },
     loginProcess: function(req, res){
         //hacemos que se busque el usuario que se quiere loguear en la tabla (lo que debe estar ahi es el alias de la db)
-        usuarios.findOne({
+        users.findOne({
             //se busca un mail (= al nombre del atributo) en la base de datos que 
             //sea igual al mail que se pone en el input (email)
             where: [{mail: req.body.email}]
