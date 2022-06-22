@@ -7,7 +7,7 @@ const comentarios = db.Comentarios;
 const productsController = {
 
     producto: function (req, res) {
-      return res.render('products', {Comics: Comics.lista, comentarios: comentarios.lista})
+      return res.render('products', {Comics: Comics, comentarios: comentarios})
     },
     add: function (req, res) {
         return res.render('product-add');
