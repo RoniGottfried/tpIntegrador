@@ -1,15 +1,15 @@
 module.exports = (sequelize, dataTypes)=>{
-    let alias = "Comentarios";
+    let alias = "Comments";
     let cols = {
         
-        id_comentario: {
+        id_comment: {
             type: dataTypes.INTEGER,
             primaryKey: true,
             autoincrement: true,
             allowNull: false,
         },
 
-        text_: {
+        comment: {
             type: dataTypes.STRING(500),
         },
 
@@ -17,11 +17,11 @@ module.exports = (sequelize, dataTypes)=>{
             type: dataTypes.DATE
         },
 
-        usuario_id: {
+        id_users: {
             type: dataTypes.INTEGER
         },
 
-        comic_id: {
+        id_producto: {
             type: dataTypes.INTEGER
         },
 
@@ -31,24 +31,24 @@ module.exports = (sequelize, dataTypes)=>{
     }
    
     let config = {
-       tableName: 'comentarios', // No coincide con el modelo
+       tableName: 'comments', // No coincide con el modelo
        timestamps: true
     }
    
-    const Comentarios = sequelize.define(alias, cols, config)
+    const Comments = sequelize.define(alias, cols, config)
 
-    Comentarios.associate = function (models){
-        Comentarios.belongsTo(models.Comics,{
-            as: 'comics',
-            foreignKey: 'comic_id'
+    Comments.associate = function (models){
+        Comments.belongsTo(models.Products,{
+            as: 'products',
+            foreignKey: 'id_product'
         }) 
-        Comentarios.belongsTo(models.Usuarios,{
+        Comments.belongsTo(models.Users,{
             as:'usuarios',
-            foreignKey: 'usuario_id'
+            foreignKey: 'id_user'
         }) 
     }
 
-    return Comentarios;
+    return Comments;
     
    
    }

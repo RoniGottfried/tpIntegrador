@@ -1,6 +1,6 @@
 module.exports = (sequelize, dataTypes) => {
 
-    let alias = "Usuarios";
+    let alias = "Users";
     let cols = {
     
         id_user: {
@@ -10,20 +10,12 @@ module.exports = (sequelize, dataTypes) => {
             allowNull: false,
         }, 
         
-        nombre: {
+        user: {
             type: dataTypes.STRING(50),
             allowNull: false,
         }, 
 
-        apellido: {
-            type: dataTypes.STRING(50),
-        },
-
-        documento: {
-            type: dataTypes.INTEGER(10),
-        },
-
-        fecha_de_nacimiento: {
+        fecha_nacimiento: {
             type: dataTypes.DATE,
         },
         
@@ -32,12 +24,12 @@ module.exports = (sequelize, dataTypes) => {
             allowNull: false,
         },
 
-        mail: {
+        email: {
             type: dataTypes.STRING(100),
             allowNull: false,
         },
 
-        avatar: {
+        image_profile: {
             type: dataTypes.STRING(200)
         },
 
@@ -51,23 +43,23 @@ module.exports = (sequelize, dataTypes) => {
     } 
     
     let config = {
-        tableName: "usuarios",
+        tableName: "users",
         timestamps: true,
-        underscored: true
+        underscored: true,
     };
 
-    const Usuarios = sequelize.define(alias, cols, config)
+    const Users = sequelize.define(alias, cols, config)
 
-    Usuarios.associate = function(models){
-        Usuarios.hasMany(models.Comics, {
-            as: "comics",
-            foreignKey: "usuario_id"
+    Users.associate = function(models){
+        Users.hasMany(models.Comics, {
+            as: "products",
+            foreignKey: "id_user"
         })
-        Usuarios.hasMany(models.Comentarios, {
-            as: "comentarios",
-            foreignKey: "usuario_id"
+        Users.hasMany(models.Comentarios, {
+            as: "comments",
+            foreignKey: "id_user"
         })
     }
 
-    return Usuarios;
+    return Users;
 }
