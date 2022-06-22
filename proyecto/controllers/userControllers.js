@@ -1,7 +1,7 @@
 const bcrypt = require('bcryptjs');
 const { response } = require('../app');
 const db = require("../database/models");
-const users = db.Users
+const Users = db.Users
 
 
 const userController = {
@@ -45,7 +45,7 @@ const userController = {
                 console.log(errors) // Guardar errors en locals
                 return res.render('register')    
         }else {
-            users.findOne({
+            Users.findOne({
                 where: {email: req.body.email}
             })
             .then(function(user){
@@ -61,7 +61,7 @@ const userController = {
                         fecha_nacimiento: req.body.fecha_nacimiento,
                         image_profile: req.file.filename
                     }
-                    users.create(usuario)
+                    Users.create(usuario)
                         .then(user => {
                             return res.redirect('/')
                         })
@@ -78,7 +78,7 @@ const userController = {
     },
     loginProcess: function(req, res){
         //hacemos que se busque el usuario que se quiere loguear en la tabla (lo que debe estar ahi es el alias de la db)
-        users.findOne({
+        Users.findOne({
             //se busca un mail (= al nombre del atributo) en la base de datos que 
             //sea igual al mail que se pone en el input (email)
             where: [{email: req.body.email}]
@@ -118,7 +118,7 @@ const userController = {
     },
     perfil: function (req,res) {
         const id = req.params.id
-        users.findByPk(id,{
+        Users.findByPk(id,{
             include:[
                 {
                     association: 'comments',
@@ -153,7 +153,7 @@ const userController = {
             if (id != req.session.user.id_user) {
                 return res.redirect(`/users/perfil-edit/${req.session.users.id_user}`)
             } else {
-                users.findByPk(id, {
+                Users.findByPk(id, {
                         include: [
                             //relación comentario producto.
                             {

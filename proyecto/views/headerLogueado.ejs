@@ -62,8 +62,8 @@
 	
 				<ul class="right-navbar">
 					<% if(locals.user !== undefined) { %>
-					<li><a href="/users/perfil/">
-						Hola! <%= locals.users %>
+					<li><a href="/users/perfil">
+						Hola <%= locals.user.user %>!
 						<i class="fas fa-x"></i>
 						</a>
 					</li>
