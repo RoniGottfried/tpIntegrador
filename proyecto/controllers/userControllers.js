@@ -101,8 +101,8 @@ const userController = {
             req.session.user= user;
 
             //Si tildó recordame => creamos la cookie.
-        if(req.body.rememberme != undefined){
-                res.cookie('userId', user.id_user, { maxAge: 1000 * 60 * 5})
+        if(req.body.recordatorio != undefined){
+                res.cookie('userCookie', user.id_user, { maxAge: 1000 * 60 * 5})
             }
             return res.redirect('/');
         }
@@ -112,7 +112,7 @@ const userController = {
     logout: function(req, res){
         req.session.destroy();
 
-        res.clearCookie("userId");
+        res.clearCookie("userCookie");
         
         res.redirect("/")
     },
