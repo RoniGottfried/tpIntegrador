@@ -38,10 +38,10 @@ const userController = {
             errors.message = "Las contraseñas no coinciden";
             res.locals.errors = errors; // Guardar errors en locals
             return res.render('register')
-        /* } else if (req.file.mimetype !== 'image/png' && req.file.mimetype !== 'image/jpg' && req.file.mimetype !== 'image/jpeg'){
+        } else if (req.file.mimetype !== 'image/png' && req.file.mimetype !== 'image/jpg' && req.file.mimetype !== 'image/jpeg'){
             errors.message = "El archivo debe ser jpg o png";
             res.locals.errors = errors; // Guardar errors en locals
-            return res.render('register') */
+            return res.render('register') 
         }else {
             users.findOne({
                 where: {mail: req.body.mail}
