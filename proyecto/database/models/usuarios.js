@@ -3,7 +3,7 @@ module.exports = (sequelize, dataTypes) => {
     let alias = "Usuarios";
     let cols = {
     
-        id: {
+        id_user: {
             autoIncrement: true,
             primaryKey: true,
             type: dataTypes.INTEGER(10),
@@ -56,18 +56,18 @@ module.exports = (sequelize, dataTypes) => {
         underscored: true
     };
 
-    const usuarios = sequelize.define(alias, cols, config)
+    const Usuarios = sequelize.define(alias, cols, config)
 
-    usuarios.associate = function(models){
-        usuarios.hasMany(models.comics, {
+    Usuarios.associate = function(models){
+        Usuarios.hasMany(models.Comics, {
             as: "comics",
-            foreignKey: "id_usuario"
+            foreignKey: "usuario_id"
         })
-        usuarios.hasMany(models.comentarios, {
+        Usuarios.hasMany(models.Comentarios, {
             as: "comentarios",
-            foreignKey: "id_usuario"
+            foreignKey: "usuario_id"
         })
     }
 
-    return usuarios;
+    return Usuarios;
 }

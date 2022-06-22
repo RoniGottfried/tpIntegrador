@@ -1,8 +1,8 @@
 module.exports = (sequelize, dataTypes)=>{
-    let alias = "comentarios";
+    let alias = "Comentarios";
     let cols = {
         
-        id: {
+        id_comentario: {
             type: dataTypes.INTEGER,
             primaryKey: true,
             autoincrement: true,
@@ -35,20 +35,20 @@ module.exports = (sequelize, dataTypes)=>{
        timestamps: true
     }
    
-    const comentarios = sequelize.define(alias, cols, config)
+    const Comentarios = sequelize.define(alias, cols, config)
 
-    comentarios.associate = function (models){
-        comentarios.belongsTo(models.comics,{
+    Comentarios.associate = function (models){
+        Comentarios.belongsTo(models.Comics,{
             as: 'comics',
-            foreignKey: 'id_comic'
+            foreignKey: 'comic_id'
         }) 
-        comentarios.belongsTo(models.Usuarios,{
+        Comentarios.belongsTo(models.Usuarios,{
             as:'usuarios',
-            foreignKey: 'id_usuario'
+            foreignKey: 'usuario_id'
         }) 
     }
 
-    return comentarios;
+    return Comentarios;
     
    
    }

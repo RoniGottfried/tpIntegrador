@@ -1,7 +1,7 @@
 const db = require("../database/models");
 
 const op = db.Sequelize.Op;
-const comics = db.Comics;
+const Comics = db.Comics;
 const comentarios = db.Comentarios;
 
 const productsController = {
@@ -45,7 +45,7 @@ const productsController = {
     detail: function(req, res){
         const id = req.params.id;
         
-        comics.findByPk(id, {
+        Comics.findByPk(id, {
             include: [  //relación comentario producto.
                 { association: 'comentarios',
                     include: { association: 'usuarios' },
@@ -74,7 +74,7 @@ const productsController = {
       res.locals.errors = errors;
       return res.render('search-results', {resultado: errors})
   } else {
-          comics.findAll({
+          Comics.findAll({
               where: {
                   [op.or]:[
                       {name_: {[op.like]: "%" + buscarProductos + "%", }},
