@@ -3,9 +3,6 @@ const { response } = require('../app');
 const db = require("../database/models");
 const users = db.Usuarios
 
-/* let usuarios = require('../db/users.js') */
-/* let products = require('../db/products')
-let comentarios = require('../db/usuarios') */
 
 const userController = {
     register: function (req, res) {
