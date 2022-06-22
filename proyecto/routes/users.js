@@ -25,6 +25,9 @@ router.post('/register', upload.single('image_profile'), userController.register
 router.get('/login', userController.login);
 router.post('/login', userController.loginProcess);
 
+//logout
+router.post('/logout', userController.logout);
+
 // Perfil
 router.get ('/perfil', userController.perfil);
 

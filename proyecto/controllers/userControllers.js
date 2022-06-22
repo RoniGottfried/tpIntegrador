@@ -97,6 +97,13 @@ const userController = {
         })
         .catch(error => console.log(error))
     },
+    logout: function(req, res){
+        req.session.destroy();
+
+        res.clearCookie("userId");
+        
+        res.redirect("/")
+    },
     perfil: function (req,res) {
         const id = req.params.id
         db.Usuarios.findByPk(id,{

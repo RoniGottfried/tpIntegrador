@@ -55,20 +55,20 @@
 			<nav class="main-navbar">
 				<ul class="left-navbar">
 					<li><a href="/">Todos los productos</a></li>
-					<% if(locals.user) { %>
-					<li><a href="/products/product/add">Cargar productos</a></li>
+					<% if(locals.user !== undefined) { %>
+					<li><a href="/products/add">Cargar productos</a></li>
 					<% }  %>
 				</ul>
 	
 				<ul class="right-navbar">
-					<% if(locals.user) { %>
+					<% if(locals.user == undefined) { %>
 					<li><a href="/users/perfil/">
 						Hola! <%= locals.users %>
 						<i class="fas fa-x"></i>
 						</a>
 					</li>
 					<li>
-						<form action="/users/login" method="get">
+						<form action="/users/logout" method="get">
 							<button class="logout" type="submit">
 								Cerrar sesión <i class="fas fa-sign-in-alt"></i>
 							</button>
