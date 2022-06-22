@@ -9,14 +9,14 @@
 				<h2 class="products-title">Agregar productos</h2>
 			</div>
 			<!-- Show the "ultimos" products -->
-			<form action="search-results.html" method="GET" class="search-form">
+			<form action="/products/add" method="POST" class="search-form">
 				<div>
 					<label for="foto">Imagen</label>,
 					<input type="file" name="foto">,
 				</div>
 				<div>
 					<label for="nombre">Nombre del Producto</label>,
-					<input type="text" name="nombre">,
+					<input type="text" name="nombreProducto">,
 				</div>
 				<div>
 					<label for="descripcion">Descripcion del Producto</label>,
@@ -26,11 +26,19 @@
 					<label for="fecha">Fecha de Carga</label>,
 					<input type="date" name="fecha">,
 				</div>
+				<div>
+					<% if(locals.errors){ %>
+						<p class="alerta" > <%= errors.message %></p>
+					<% } %>
+				</div>
+				<div>
+					<button type="submit" class="boton-agregar-producto">Añadir producto</button>
+				</div>
 			</form>
 
 
 	<!-- footer -->
-	
+	<%- include("./partials/footer") %> 
 	<!-- /footer -->
 </body>
 
