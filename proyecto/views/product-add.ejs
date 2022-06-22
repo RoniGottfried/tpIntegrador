@@ -12,19 +12,19 @@
 			<form action="/products/add" method="POST" class="search-form">
 				<div>
 					<label for="foto">Imagen</label>,
-					<input type="file" name="foto">,
+					<input type="file" name="image_product">,
 				</div>
 				<div>
 					<label for="nombre">Nombre del Producto</label>,
-					<input type="text" name="nombreProducto">,
+					<input type="text" name="name_product">,
 				</div>
 				<div>
 					<label for="descripcion">Descripcion del Producto</label>,
-					<input type="text" name="descripcion">
+					<input type="text" name="description">
 				</div>
 				<div>
 					<label for="fecha">Fecha de Carga</label>,
-					<input type="date" name="fecha">,
+					<input type="date" name="date">,
 				</div>
 				<div>
 					<% if(locals.errors){ %>

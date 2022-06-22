@@ -50,10 +50,10 @@ const productsController = {
         
         product.findByPk(id, {
             include: [  //relación comentario producto.
-                { association: 'comments',
+                { association: 'Comments',
                     include: { association: 'users' },
                 },                           
-                { association: 'users' }
+                { association: 'Users' }
             ],
             order: [['comments', 'createdAt', 'DESC']]
         })

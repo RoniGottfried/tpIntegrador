@@ -51,7 +51,7 @@ module.exports = (sequelize, dataTypes)=>{
             foreignKey: "id_usuario"
         })
         Products.hasMany(models.Comments,{
-            as: 'comentarios',
+            as: 'comments',
             foreignKey: 'id_product' 
          }) 
     }
