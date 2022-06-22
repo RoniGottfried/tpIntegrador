@@ -45,16 +45,16 @@ module.exports = (sequelize, dataTypes)=>{
    
     const comics = sequelize.define(alias, cols, config)
 
-    /* comics.associate = function(models){
+    comics.associate = function(models){
         comics.belongsTo(models.usuarios, {
-            as: "users",
-            foreignKey: "id_user"
+            as: "usuarios",
+            foreignKey: "id_usuario"
         })
-        comics.hasMany(models.Comments,{
-            as: 'comments',
-            foreignKey: 'id_product' 
+        comics.hasMany(models.comentarios,{
+            as: 'comentarios',
+            foreignKey: 'id_comic' 
          }) 
-    } */
+    }
 
     return comics;
    

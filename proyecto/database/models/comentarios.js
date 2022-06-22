@@ -37,16 +37,16 @@ module.exports = (sequelize, dataTypes)=>{
    
     const comentarios = sequelize.define(alias, cols, config)
 
-    /* comentarios.associate = function (models){
+    comentarios.associate = function (models){
         comentarios.belongsTo(models.comics,{
             as: 'comics',
-            foreignKey: 'id_product'
+            foreignKey: 'id_comic'
         }) 
         comentarios.belongsTo(models.usuarios,{
-            as:'users',
-            foreignKey: 'id_user'
+            as:'usuarios',
+            foreignKey: 'id_usuario'
         }) 
-    } */
+    }
 
     return comentarios;
     
