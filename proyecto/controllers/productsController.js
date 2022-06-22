@@ -1,8 +1,6 @@
 const db = require("../database/models");
-
-const op = db.Sequelize.Op;
-const Comics = db.Comics;
-const comentarios = db.Comentarios;
+const Op = db.Sequelize.Op;
+const Producto = db.Products;
 
 const productsController = {
 
@@ -31,13 +29,13 @@ const productsController = {
             res.locals.errors = errors;
             return res.render('products-add')
         } else {
-            let comic = {
-                nombreProducto: req.body.nombreProducto,
-                descripcion: req.body.descripcion,
-                foto: req.file.filename,
-                id_Usuario: req.session.usuario.id_Usuario,
+            let producto = {
+                name_product: req.body.name_product,
+                description: req.body.description,
+                image_product: req.file.filename,
+                id_user: req.session.user.id_user,
             }
-            comic.create(comic)
+            Producto.create(producto)
             return res.redirect("/")
                 
              }
@@ -45,47 +43,51 @@ const productsController = {
     detail: function(req, res){
         const id = req.params.id;
         
-        Comics.findByPk(id, {
+        Producto.findByPk(id, {
             include: [  //relación comentario producto.
-                { association: 'comentarios',
-                    include: { association: 'usuarios' },
+                { association: 'comments',
+                    include: { association: 'users' },
                 },                           
-                { association: 'usuarios' }
+                { association: 'users' }
             ],
-            order: [['comentarios', 'createdAt', 'DESC']]
+            order: [['comments', 'createdAt', 'DESC']]
         })
             .then(data => {
                 //Si no hay producto que coincida con el id, redirecciona a home.
                 if (data == null) {
                     return res.redirect('/')
                 } else {
-                    return res.render('products', data)
+                    return res.render('products', {data: data});
                 }
             })
             .catch(error => {
                 console.log(error)
             })
     },
-    search: (req, res) => {
-      const buscarProductos = req.query.search; // Obtengo la info de la querystring.
+    search: function(req, res) {
+      const searchProduct = req.query.search; // Obtengo la info de la querystring.
       const errors = {}
-      if(buscarProductos == "" || buscarProductos == undefined){
+      if(searchProduct == "" ){
       errors.message = "Este campo no puede estar vacío";
       res.locals.errors = errors;
-      return res.render('search-results', {resultado: errors})
+      return res.render('search-results');
   } else {
-          Comics.findAll({
+          Producto.findAll({
               where: {
                   [op.or]:[
-                      {name_: {[op.like]: "%" + buscarProductos + "%", }},
-                      {description: {[op.like]: "%" + buscarProductos + "%", }},
-                      {usuario_id: {[op.like]: "%" + buscarProductos + "%", }},
+                      {name_product: {[Op.like]: "%" + searchProduct + "%", }},
+                      {description: {[Op.like]: "%" + searchProduct + "%", }},
+                      {id_user: {[Op.like]: "%" + searchProduct + "%", }},
                   
                   ]
                   },
               order: [
-                  ['name_', 'ASC']
+                  ['name_product', 'ASC']
               ],
+              include: [  //relación comentario producto.
+              { association: 'comments'},                           
+              { association: 'users' }
+          ],
           })
               .then(resultado => {
                   
