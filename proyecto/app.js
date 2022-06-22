@@ -10,7 +10,7 @@ var usersRouter = require('./routes/users');
 var productsRouter = require('./routes/products');
 var comentariosRouter = require('./routes/comentarios')
 const db = require('./database/models');
-const usuarios = db.usuarios //Es el alias del modelo
+const users = db.usuarios //Es el alias del modelo
 
 var app = express();
 
@@ -24,6 +24,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
 app.use(session({
   // el objeto literal tiene tres propiedades que siempre son las mismas
   secret: 'ComicsDB',
@@ -31,11 +32,34 @@ app.use(session({
   saveUninitialized: true
 }))
 
+
 //pasar datos de session a locals
 app.use(function(req, res, next){
-  res.locals.usuarios = req.session.usuarios
+  res.locals.users = req.session.users
   return next()
 })
+  
+app.use(function(req, res, next){
+  //chequear que no tengamos usuario en sessión y si tengamos cookie
+  if(req.session.users == undefined && req.cookies.userId !== undefined){
+    //Buscar el usario de la base de datos
+       users.findByPk(req.cookies.userId)
+            .then( function(users){
+              //Dentro del then pasar al usario a req.session.user
+              //Pasar al usuario locals.user
+              // retornar next()
+                req.session.users = users
+                res.locals.users = users
+              
+                return next()
+
+            })
+            .catch( error => console.log(error))
+          } else { //tiene que haber un else
+            return next()
+          }
+})
+
 
 app.use('/', mainRouter);
 app.use('/users', usersRouter);

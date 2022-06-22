@@ -59,9 +59,10 @@
 				</ul>
 	
 				<ul class="right-navbar">
-					<% if(locals.usuario) { %>
+					<% if(locals.user) { %>
 					<li><a href="/users/perfil/">
-						Hola!    <i class="fas fa-x"></i>
+						Hola! <%= locals.users %>
+						<i class="fas fa-x"></i>
 						</a>
 					</li>
 					<li>
@@ -71,6 +72,14 @@
 							</button>
 						</form>
 					</li>
+					<% } else{ %>
+						<li>
+							<a href="/users/register">Creá tu cuenta <i class="far fa-address-card"></i></a>
+						</li>
+						<li>
+							<a href="/users/login">Ingresá <i class="fas fa-sign-in-alt"></i></a>
+						</li>
+					<% } %>
 					<!-- Solo deslogueado <li>
 						<a href="register.html">Creá tu cuenta <i class="far fa-address-card"></i>
 						</a>
