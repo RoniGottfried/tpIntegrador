@@ -10,7 +10,7 @@ var usersRouter = require('./routes/users');
 var productsRouter = require('./routes/products');
 var comentariosRouter = require('./routes/comentarios')
 const db = require('./database/models');
-const users = db.usuarios //Es el alias del modelo
+const users = db.Users //Es el alias del modelo
 
 var app = express();
 
@@ -27,7 +27,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(session({
   // el objeto literal tiene tres propiedades que siempre son las mismas
-  secret: 'ComicsDB',
+  secret: 'comilon',
   resave: false,
   saveUninitialized: true
 }))
@@ -35,21 +35,21 @@ app.use(session({
 
 //pasar datos de session a locals
 app.use(function(req, res, next){
-  res.locals.usuarios = req.session.usuario
+  res.locals.user = req.session.user
   return next()
 })
   
 app.use(function(req, res, next){
   //chequear que no tengamos usuario en sessión y si tengamos cookie
-  if(req.session.users == undefined && req.cookies.userId !== undefined){
+  if(req.session.user == undefined && req.cookies.userId !== undefined){
     //Buscar el usario de la base de datos
-       users.findByPk(req.cookies.userId)
-            .then( function(users){
+       user.findByPk(req.cookies.userId)
+            .then( function(user){
               //Dentro del then pasar al usario a req.session.user
               //Pasar al usuario locals.user
               // retornar next()
-                req.session.users = users
-                res.locals.users = users
+                req.session.user = user
+                res.locals.user = user
               
                 return next()
 
