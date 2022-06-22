@@ -1,15 +1,19 @@
 const db = require("../database/models");
 const Op = db.Sequelize.Op;
 const product = db.Products;
+const comment = db.Comments;
+const user = db.Users;
 
 const productsController = {
 
     producto: function (req, res) {
       return res.render('products', {Comics: Comics, comentarios: comentarios})
     },
+    
     add: function (req, res) {
         return res.render('product-add');
     },
+
     productProcess: function(req, res){
         const errors = {}
         if(req.body.name_product == ""){
@@ -40,6 +44,7 @@ const productsController = {
                 
              }
     }, 
+
     detail: function(req, res){
         const id = req.params.id;
         
@@ -64,6 +69,7 @@ const productsController = {
                 console.log(error)
             })
     },
+
     search: function(req, res) {
       const searchProduct = req.query.search; // Obtengo la info de la querystring.
       const errors = {}
@@ -71,7 +77,7 @@ const productsController = {
       errors.message = "Este campo no puede estar vacío";
       res.locals.errors = errors;
       return res.render('search-results');
-  } else {
+        } else {
           product.findAll({
               where: {
                   [op.or]:[
@@ -102,7 +108,26 @@ const productsController = {
               .catch(error => {
                   console.log(error)
               })
-      }}, 
+    }}, 
+    
+    productEdit: function(req, res) {
+        const id = req.params.id;
+        if(req.session.user){
+            product.findByPk(id)
+                .then(data=>{
+                    if(req.session.user.id_user == data.id_user){
+                        return res.render("product-edit", {data: data}); 
+                    }else{
+                        return res.redirect("/")
+                    }
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+        }else{
+            return res.redirect("/users/login")
+        }
+    },
   }
 
   module.exports = productsController;
