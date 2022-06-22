@@ -1,13 +1,13 @@
 const bcrypt = require('bcryptjs');
 const { response } = require('../app');
 const db = require("../database/models");
-const Users = db.Usuarios
+const users = db.Users
 
 
 const userController = {
     register: function (req, res) {
         // if de si estas ya registrado
-        if(req.session.usuario !== undefined){
+        if(req.session.user !== undefined){
             return res.redirect('/')
         }else{
             return res.render('register');
@@ -16,7 +16,7 @@ const userController = {
     registerProcess: function(req, res) {
         let errors = {}
         // por si no escribe mail
-        if(req.body.mail == ""){
+        if(req.body.email == ""){
             errors.message = "El email es obligatorio";
             res.locals.errors = errors; // Guardar errors en locals
             return res.render('register')
@@ -39,28 +39,34 @@ const userController = {
             errors.message = "El archivo debe ser jpg o png";
             res.locals.errors = errors; // Guardar errors en locals
             return res.render('register') 
+        } else if(req.body.user == "") {
+                errors.message = "El nombre de usuario es obligatorio"
+                res.locals.errors = errors;
+                console.log(errors) // Guardar errors en locals
+                return res.render('register')    
         }else {
-            Users.findOne({
-                where: {mail: req.body.mail}
+            users.findOne({
+                where: {email: req.body.email}
             })
-            .then(function(usuarios){
-                if(usuarios != null){
+            .then(function(user){
+                if(user != null){
                     errors.message = "El email ya esta registrado por favor elija otro";
                     res.locals.errors = errors; // Guardar errors en locals
                     return res.render('register')                
                 }else {
                     let usuario = {
-                        nombre: req.body.nombre,
-                        mail: req.body.mail,
+                        user: req.body.user,
+                        email: req.body.email,
                         password: bcrypt.hashSync(req.body.password, 10),
-                        avatar: 'req.file.filename'
+                        fecha_nacimiento: req.body.fecha_nacimiento,
+                        image_profile: req.file.filename
                     }
                     users.create(usuario)
-                        .then(usuarios => {
+                        .then(user => {
                             return res.redirect('/')
                         })
-                        .catch(e=>{
-                            console.log(e)
+                        .catch(error=>{
+                            console.log(error)
                         })
                 }
             }
@@ -72,30 +78,32 @@ const userController = {
     },
     loginProcess: function(req, res){
         //hacemos que se busque el usuario que se quiere loguear en la tabla (lo que debe estar ahi es el alias de la db)
-        Users.findOne({
+        users.findOne({
             //se busca un mail (= al nombre del atributo) en la base de datos que 
             //sea igual al mail que se pone en el input (email)
-            where: [{mail: req.body.email}]
+            where: [{email: req.body.email}]
         })
         // .then porque en sequalize son todos metodos asincronicos
-        .then( usuarios => {
+        .then( user => {
         let errors = {};
-        if(usuarios == null){
+        if(user == null){
             //cargo el mensaje del error
             errors.message = 'El email no existe'
             //pasar el mensaje a la vista
             res.locals.errors = errors
             //renderizar la vista
             return res.render('login')
-        } else if(bcrypt.compareSync(req.body.password, usuarios.password) == false){
+        } else if(bcrypt.compareSync(req.body.password, user.password) == false){
             errors.message = "La contraseña es incorrecta"
             res.locals.errors = errors
             return res.render('login');
         } else {
-            req.session.usuario = usuario;
+            req.session.user= user;
 
             //Si tildó recordame => creamos la cookie.
-            
+        if(req.body.rememberme != undefined){
+                res.cookie('userId', user.id_user, { maxAge: 1000 * 60 * 5})
+            }
             return res.redirect('/');
         }
         })
@@ -110,18 +118,18 @@ const userController = {
     },
     perfil: function (req,res) {
         const id = req.params.id
-        db.Usuarios.findByPk(id,{
+        users.findByPk(id,{
             include:[
                 {
-                    association: 'comentarios',
+                    association: 'comments',
                     include: {
-                        association: 'usuarios'
+                        association: 'users'
                     }
                 },
                 {
-                    association: 'comics',
+                    association: 'products',
                     include: {
-                        association: "comentarios"
+                        association: "comments"
                     }
                 },
             ]
@@ -130,7 +138,7 @@ const userController = {
             if (data == null) {
                 return res.redirect('/')
             } else {
-                return res.render('perfil', { data:data })
+                return res.render('perfil', { data: data })
             }
         })
         .catch((err)=>{
@@ -141,19 +149,19 @@ const userController = {
     perfilEdit: function (req,res) {
         let id = req.params.id
 
-        if (req.session.usarios) {
-            if (id != req.session.usuarios.uduario_id) {
-                return res.redirect(`/usuarios/perfil-edit/${req.session.usuarios.usuario_id}`)
+        if (req.session.users) {
+            if (id != req.session.user.id_user) {
+                return res.redirect(`/users/perfil-edit/${req.session.users.id_user}`)
             } else {
-                usuarios.findByPk(id, {
+                users.findByPk(id, {
                         include: [
                             //relación comentario producto.
                             {
-                                association: 'comentarios'
+                                association: 'comments'
                             },
                             // relación producto usuario                                
                             {
-                                association: 'comics'
+                                association: 'products'
                             }
                         ]
                     })
@@ -169,37 +177,36 @@ const userController = {
                     })
             } 
         } else {
-            return res.redirect('/usuarios/login')
+            return res.redirect('/users/login')
         }
     },
     perfilStore: function(req,res){
-        const usuarios = {
-            nombre: req.body.name,
-            mail: req.body.mail,
-            password: bcrypt.hashSync(req.body.password, 12),
-            fecha_de_nacimiento: req.body.fecha_de_nacimiento,
-            documento: req.body.documento,
-            avatar: "",
+        const user = {
+            user: req.body.user,
+            email: req.body.email,
+            password: bcrypt.hashSync(req.body.password, 10),
+            fecha_nacimiento: req.body.fecha_nacimiento,
+            image_profile: ""
         }
 
         if (req.file == undefined) {
-            usuarios.avatar = req.session.usuarios.avatar;
+            user.image_profile = req.session.user.image_profile;
         } else {
-            usuarios.avatar = req.file.filename;
+            user.image_profile = req.file.filename;
         }
 
-        db.Usuarios.update(user, {
+        users.update(user, {
                 where: {
-                    id: req.session.usuarios.id
+                    id_user: req.session.user.id_user
                 }
             })
             .then(function(){
 
-                usuarios.id = req.session.usuarios.id
+                id_user = req.session.user.id_user
 
-                req.session.usuarios = usuarios /* Probar sin esto o usando abajo el req.session.usser.id */
+                req.session.user = user /* Probar sin esto o usando abajo el req.session.usser.id */
 
-                return res.redirect( `/usuarios/perfil/${usuarios.id}` )
+                return res.redirect( `/user/perfil/${user.id_user}` )
             })
             .catch(error => {
                 console.log(error)
