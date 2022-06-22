@@ -92,7 +92,11 @@ const userController = {
             res.locals.errors = errors
             return res.render('login');
         } else {
-            req.session.usuarios = usuarios;
+            req.session.usuario = usuario;
+
+            //Si tildó recordame => creamos la cookie.
+            
+            return res.redirect('/');
         }
         })
         .catch(error => console.log(error))

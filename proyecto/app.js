@@ -35,7 +35,7 @@ app.use(session({
 
 //pasar datos de session a locals
 app.use(function(req, res, next){
-  res.locals.users = req.session.users
+  res.locals.usuarios = req.session.usuario
   return next()
 })
   
