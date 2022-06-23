@@ -39,8 +39,7 @@ module.exports = (sequelize, dataTypes)=>{
    
     let config = {
        tableName: 'products', // No coincide con el modelo
-       timestamps: true,
-       underscored: true
+       timestamps: false
     }
    
     const Products = sequelize.define(alias, cols, config)

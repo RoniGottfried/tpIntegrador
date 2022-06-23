@@ -13,26 +13,19 @@ module.exports = (sequelize, dataTypes)=>{
             type: dataTypes.STRING(500),
         },
 
-        created_at: {
-            type: dataTypes.DATE
-        },
-
-        id_users: {
+        id_user: {
             type: dataTypes.INTEGER
         },
 
-        id_producto: {
+        id_product: {
             type: dataTypes.INTEGER
         },
 
-        updated_at: {
-            type: dataTypes.DATE
-        }
     }
    
     let config = {
        tableName: 'comments', // No coincide con el modelo
-       timestamps: true
+       timestamps: false
     }
    
     const Comments = sequelize.define(alias, cols, config)

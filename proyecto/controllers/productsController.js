@@ -12,7 +12,10 @@ const productsController = {
     },
     
     add: function (req, res) {
-        return res.render('product-add');
+        return res.send("HOLAADD");
+    },
+    add2: function (req, res) {
+        return res.send("HOLAADD222222222222222222222");
     },
 
     productProcess: function(req, res){
@@ -40,7 +43,7 @@ const productsController = {
                 image_product: req.file.filename,
                 id_user: req.session.user.id_user,
             }
-            Producto.create(producto)
+        product.create(producto)
             return res.redirect("/")
                 
              }
@@ -51,12 +54,11 @@ const productsController = {
         
         product.findByPk(id, {
             include: [  //relación comentario producto.
-                { association: 'Comments',
+                { association: 'comments',
                     include: { association: 'users' },
                 },                           
-                { association: 'Users' }
+                { association: 'users' }
             ],
-            order: [['comments', 'createdAt', 'DESC']]
         })
             .then(data => {
                 //Si no hay producto que coincida con el id, redirecciona a home.

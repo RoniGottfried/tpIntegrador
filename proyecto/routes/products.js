@@ -21,7 +21,7 @@ let upload = multer({storage: storage})
 router.get ('/:id?', productsController.detail);
 
 // Agregado de Productos
-router.get ('/add', productsController.add);
+router.get("/add", productsController.add2);
 router.post("/add", upload.single('image_product'), productsController.productProcess);
 
 // Resultados de Busqueda
