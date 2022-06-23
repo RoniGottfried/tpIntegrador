@@ -7,9 +7,7 @@ const user = db.Users;
 
 const productsController = {
 
-    producto: function (req, res) {
-      return res.render('products', {Comics: Comics, comentarios: comentarios})
-    },
+    
     
     add: function (req, res) {
         return res.send("HOLAADD");
@@ -73,6 +71,37 @@ const productsController = {
             })
     },
 
+    productUpdate: function(req, res){
+        const id = req.params.id;
+
+        product.findByPk(id)
+        .then(data => {
+            const product = {
+                name_product: req.body.name_product,
+                image_product: "",
+                description: req.body.description,
+            }
+            
+            if(req.file == undefined){
+                product.image_product = data.image_product;
+            }else{
+                product.image_product = req.file.filename;
+            }
+    
+            product.update(product, {
+                where: {
+                    id_product: id
+                }
+            })
+            .then(function(){
+                return res.redirect(`/products/product/${id}`)
+            })
+            .catch(error =>{
+                console.log(error)
+            });
+        })
+    },
+   
     search: function(req, res) {
       const searchProduct = req.query.search; // Obtengo la info de la querystring.
       const errors = {}
@@ -98,7 +127,7 @@ const productsController = {
               { association: 'users' }
           ],
 
-          order: [['comments', 'createdAt', 'DESC']]
+          
           })
               .then(resultado => {
                   

@@ -27,8 +27,11 @@ router.get("/add", productsController.add2);
 router.post("/add", upload.single('image_product'), productsController.productProcess);
 
 // Resultados de Busqueda
-
 router.get ('/search/results', productsController.search);
+
+// Editar productos
+router.get("/product-edit/:id", productsController.productEdit);
+router.post("/product-edit/:id/update",upload.single('image_product'), productsController.productUpdate);
 
 
 
