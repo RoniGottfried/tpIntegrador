@@ -97,6 +97,8 @@ const productsController = {
               { association: 'comments'},                           
               { association: 'users' }
           ],
+
+          order: [['comments', 'createdAt', 'DESC']]
           })
               .then(resultado => {
                   
