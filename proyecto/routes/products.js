@@ -23,7 +23,7 @@ router.post("/product/:id/comment", productsController.comment);
 router.post("/deleteComment/:id", productsController.deleteComment);
 
 // Agregado de Productos
-router.get("/add", productsController.add2);
+router.get("/add", productsController.add);
 router.post("/add", upload.single('image_product'), productsController.productProcess);
 
 // Resultados de Busqueda

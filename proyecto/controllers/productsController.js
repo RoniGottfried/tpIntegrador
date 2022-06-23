@@ -10,7 +10,7 @@ const productsController = {
     
     
     add: function (req, res) {
-        return res.send("HOLAADD");
+        return res.render('product-add');
     },
     add2: function (req, res) {
         return res.send("HOLAADD222222222222222222222");
@@ -21,19 +21,19 @@ const productsController = {
         if(req.body.name_product == ""){
             errors.message = "El nombre del producto es obligatorio",
             res.locals.errors = errors;
-            return res.render('products-add')
+            return res.render('product-add')
         } else if (req.file == undefined){
             errors.message = "La foto del producto es obligatoria";
             res.locals.errors = errors;
-            return res.render('products-add')
+            return res.render('product-add')
         }else if (req.file.mimetype !== 'image/png' && req.file.mimetype !== 'image/jpg' && req.file.mimetype !== 'image/jpeg'){
             errors.message = "El archivo debe ser jpg o png";
             res.locals.errors = errors;
-            return res.render('products-add')
+            return res.render('product-add')
         } else if (req.body.description == ""){
             errors.message = "La descripción del producto es obligatoria";
             res.locals.errors = errors;
-            return res.render('products-add')
+            return res.render('product-add')
         } else {
             let producto = {
                 name_product: req.body.name_product,
