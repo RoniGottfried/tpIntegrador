@@ -5,12 +5,12 @@
 	<section class="info-usuario container products-wrapper">
 		<div class="row">
 			<div class="foto-perfil">
-				<img src="/public/images/<% data.avatar %>" alt="foto de <% data.usuarios %>>" class="foto-perfil">
+				<img src="/public/images/<% data.image_profile %>" alt="foto perfil" class="foto-perfil">
 			</div>
 			<div class="data-container col-6">
 				<div class="d-flex align-items-center ">
-					<h1 class="main-title"> <%= data.name %> 
-						<a href="/users/perfil-edit/<%= data.id %>"></a>
+					<h1 class="main-title"> <%= data.user %> 
+						<a href="/users/perfil-edit/<%= data.id_user %>">
 							<i class="fas fa-cog"></i>
 						</a>
 					</h1>
@@ -36,18 +36,20 @@
 				<h2 class="products-title">Mis productos</h2>
 			</div>
 			<!-- Show mis productos -->
+			<% if(data.products.length != 0) {  %>
 			<% for(let i=0; i<comics.length; i++){ %>
 			<div class="col-12 col-sm-6 col-lg-3">
 				<section class="product-box">
 					<a href="/products">
 						<figure class="product-box_image">
-							<img src="<%= comics[i].img %>" alt="cafetera moulinex">
+							<img src="<%= data.products[i].image_product %>" alt="cafetera moulinex">
 						</figure>
 						
 						<article class="product-box_data">
-							<h2><%= comics[i].nombre %></h2>
-							<p><%= comics[i].descripcion %></p>
+							<h2><%= data.products[i].name_product %></h2>
+							<p><%= data.products[i].description %></p>
 							<p></p>
+							<p>Comentarios: <%= data.products[i].comments.length %> </p>
 						</article>
 						
 					</a>
