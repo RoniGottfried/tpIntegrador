@@ -10,6 +10,7 @@ const productsController = {
     
     
     add: function (req, res) {
+        //res.send("HOLAA");
         return res.render('product-add');
     },
     add2: function (req, res) {
