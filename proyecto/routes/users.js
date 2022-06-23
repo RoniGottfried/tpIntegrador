@@ -29,7 +29,7 @@ router.post('/login', userController.loginProcess);
 router.post('/logout', userController.logout);
 
 // Perfil
-router.get ('/perfil/:id', userController.perfil);
+router.get ('/perfil/:id?', userController.perfil);
 
 // Perfil Edit
 router.get('/perfil-edit/:id', userController.perfilEdit);

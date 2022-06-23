@@ -141,8 +141,8 @@ const userController = {
                 return res.render('perfil', { data: data })
             }
         })
-        .catch((err)=>{
-            console.log(err)
+        .catch((error)=>{
+            console.log(error)
         })
 
     },
