@@ -1,21 +1,25 @@
 <%- include('./headerLogueado') %>
 	<!-- product detail -->
+	<% if(data.id_product = null){ %> 
+		<p>No pudimos encontrar el producto que buscás.</p>
+	<% } else { %>
 	<div class="container-product-detail">
 		<div class="d-flex align-items-center">
-			<img class="img-product-detail" src="/images/products/<%=products[1].image_product %>" alt="cafetera moulinex">
+			<img class="img-product-detail" src="/images/products/<%= data.image_product %>" alt="comic">
 		</div>
 		<article class="product-detail-prueba">
-			<h2 class="products-title"><%= products.name_product %></h2> 
-			<img src="./images/products/default-image.png" alt="" class="product-detail-img">
-			<p class="product-detail-description"><%= products.description %></p>
+			<h2 class="products-title"><%= data.name_product %></h2> 
+			<p><a class="product-detail-description" href="/users/profile/<%= data.users.id_user %>"> <%=data.users.user %> </a></p>
+			<p class="product-detail-description"><%= data.description %></p>
 			<p class="product-detail-description">
 				<a href="/products/product/add">Editar</a>
 			</p>
 		</article>
+		
 	</div>
 	<div class="comment-detail">
 		<div class="row-detail">			
-			<% for(let i=0; i<comments.length; i++){ %>
+			<% for(let i=0; i<data.comments.length; i++){ %>
 				<div class="comments-detail-prueba">
 					<section class="comments">
 						<article>
@@ -34,12 +38,13 @@
 			<% } %>
 
 
-			<form class="form-detail" action="/users/login" method="get">
-				<input class="form-input" type="text" value="" placeholder="Agregar comentario">
+			<form class="form-detail" action="/products/product/<%= data.id_product %>/comment" method="POST">
+				<input name="comment" class="form-input" type="text" value="" placeholder="Agregar comentario">
 				<button type="submit" class="buy-now-button">AGREGAR COMENTARIO</button>
 			</form>
 		</div>
 	</div>
+	<% } %>
 	<!-- /product detail -->
 
 	<!-- footer -->
