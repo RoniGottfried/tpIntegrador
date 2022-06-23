@@ -41,9 +41,9 @@ app.use(function(req, res, next){
   
 app.use(function(req, res, next){
   //chequear que no tengamos usuario en sessión y si tengamos cookie
-  if(req.session.user == undefined && req.cookies.userId !== undefined){
+  if(req.session.user == undefined && req.cookies.userCookie !== undefined){
     //Buscar el usario de la base de datos
-       users.findByPk(req.cookies.userId)
+       users.findByPk(req.cookies.userCookie)
             .then( function(user){
               //Dentro del then pasar al usario a req.session.user
               //Pasar al usuario locals.user
