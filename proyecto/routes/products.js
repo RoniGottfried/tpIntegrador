@@ -19,6 +19,8 @@ let upload = multer({storage: storage})
 
 // Productos
 router.get ('/:id?', productsController.detail);
+router.post("/product/:id/comment", productsController.comment);
+router.post("/deleteComment/:id", productsController.deleteComment);
 
 // Agregado de Productos
 router.get("/add", productsController.add2);

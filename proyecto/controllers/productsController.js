@@ -2,7 +2,7 @@ const db = require("../database/models");
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 const product = db.Products;
-const comment = db.Comments;
+const Comentario = db.Comments;
 const user = db.Users;
 
 const productsController = {
@@ -130,6 +130,37 @@ const productsController = {
         }else{
             return res.redirect("/users/login")
         }
+    },
+    comment: function(req, res){
+        if(req.session.user){
+            const comentario = {
+                id_user: req.session.user.id_user,
+                id_product: req.params.id,
+                comment: req.body.comment,
+            }     
+            Comentario.create(Comentario)
+            return res.redirect(`/products/product/${req.params.id}`)
+        }else{
+            return res.redirect("/users/login")
+            }
+    },
+    deleteComment: function(req, res){
+        Comentario.findByPk(req.params.id)
+        .then(data => {
+            Comentario.destroy({
+                where: [
+                    {
+                        id_comment: req.params.id
+                    }
+                ]
+            })
+            .then(() =>{
+                return res.redirect(`/products/product/${data.id_product}`)
+            })
+            .catch(error => {
+                console.log(error)
+            })
+        })     
     },
   }
 
