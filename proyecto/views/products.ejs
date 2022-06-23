@@ -2,12 +2,12 @@
 	<!-- product detail -->
 	<div class="container-product-detail">
 		<div class="d-flex align-items-center">
-			<img class="img-product-detail" src="/public/images/ <% Comics.url_image %>" alt="cafetera moulinex">
+			<img class="img-product-detail" src="/images/products/<%=products[1].image_product %>" alt="cafetera moulinex">
 		</div>
 		<article class="product-detail-prueba">
-			<h2 class="products-title"><%= Comics.name_ %></h2> 
+			<h2 class="products-title"><%= products.name_product %></h2> 
 			<img src="./images/products/default-image.png" alt="" class="product-detail-img">
-			<p class="product-detail-description"><%= Comics.description %></p>
+			<p class="product-detail-description"><%= products.description %></p>
 			<p class="product-detail-description">
 				<a href="/products/product/add">Editar</a>
 			</p>
@@ -15,16 +15,16 @@
 	</div>
 	<div class="comment-detail">
 		<div class="row-detail">			
-			<% for(let i=0; i<comentarios.length; i++){ %>
+			<% for(let i=0; i<comments.length; i++){ %>
 				<div class="comments-detail-prueba">
 					<section class="comments">
 						<article>
 							<img src="https://via.placeholder.com/35" alt="">
-							<img src="/public/images/ <% comentarios[i].usuarios.avatar %>" alt=" Imagen de <%= comentarios[i].usuarios.nombre %>">
+							<img src="/public/images/ <% comments[i].user.id_user %>" alt=" Imagen de <%= comentarios[i].usuarios.nombre %>">
 							<div class="data">
 								<p class="user">
-								<strong> <a href="/users/register"><%= comentarios[i].usuario %>: </a> </strong>
-								<%= comentarios[i].comentario %></p>
+								<strong> <a href="/users/register"><%= comments[i].id_user %>: </a> </strong>
+								<%= comments[i].comments %></p>
 							</div>
 						</article>
 						

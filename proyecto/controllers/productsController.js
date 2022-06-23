@@ -83,7 +83,7 @@ const productsController = {
         } else {
           product.findAll({
               where: {
-                  [op.or]:[
+                  [Op.or]:[
                       {name_product: {[Op.like]: "%" + searchProduct + "%", }},
                       {description: {[Op.like]: "%" + searchProduct + "%", }},
                       {id_user: {[Op.like]: "%" + searchProduct + "%", }},
