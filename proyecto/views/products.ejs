@@ -19,25 +19,6 @@
 	</div>
 	<div class="comment-detail">
 		<div class="row-detail">			
-			<% for(let i=0; i<data.comments.length; i++){ %>
-				<div class="comments-detail-prueba">
-					<section class="comments">
-						<article>
-							<img src="https://via.placeholder.com/35" alt="">
-							<img src="/public/images/ <% comments[i].user.id_user %>" alt=" Imagen de <%= comentarios[i].usuarios.nombre %>">
-							<div class="data">
-								<p class="user">
-								<strong> <a href="/users/register"><%= comments[i].id_user %>: </a> </strong>
-								<%= comments[i].comments %></p>
-							</div>
-						</article>
-						
-					</section>
-				</div>
-				
-			<% } %>
-
-
 			<form class="form-detail" action="/products/product/<%= data.id_product %>/comment" method="POST">
 				<input name="comment" class="form-input" type="text" value="" placeholder="Agregar comentario">
 				<button type="submit" class="buy-now-button">AGREGAR COMENTARIO</button>
