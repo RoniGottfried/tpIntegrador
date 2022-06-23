@@ -1,10 +1,15 @@
 const db = require('../database/models');
 
-let products = require("../db/products");
-let comentarios = require("../db/comentarios")
+
 const mainController = {
     index: function (req, res) {
-      return res.render('index', {comics: products.lista, comentarios});
+      db.Products.findAll()
+        .then (data =>{
+          return res.render('index', {products: data})
+        }) 
+        .catch (error =>{
+          console.log(error)
+        })
     },
     
   };

@@ -11,22 +11,21 @@
 			<h2 class="products-title">Novedades</h2>
 		</div>
 		<!-- Show the "ultimos" products -->
-		<% for(let i=0; i<comics.length; i++){ %>
+		<% for(let i=0; i<products.length; i++){ %>
 			<div class="col-12 col-sm-6 col-lg-3">
 				<section class="product-box">
-					<a href="/products/<%=comics[i].id %>">
+					<a href="/products/<%=products[i].id_product %>">
 						<figure class="product-box_image">
-							<img src="<%=comics[i].img %>" alt="cafetera moulinex">
+							<img src="<%=products[i].image_product %>" alt="cafetera moulinex">
 						</figure>
 						<article class="product-box_data">
-							<h2><%= comics[i].nombre %></h2>
-							<p> <%= comics[i].descripcion %> </p>
-							<p> <%= comics[i].fecha %></p>
+							<h2><%= products[i].name_product %></h2>
+							<p> <%= products[i].description %> </p>
+							<p> <%= products[i].created_at %></p>
 						</article>
 					</a>
 				</section>
 			</div>
-			
 		<% } %>
 	</div>
 </div>
@@ -38,17 +37,17 @@
 			<h2 class="products-title">Más comentados</h2>
 		</div>
 		<!-- Show the "ultimos" products -->
-		<% for(let i=0; i<4; i++){ %>
+		<% for(let i=0; i<products.length; i++){ %>
 			<div class="col-12 col-sm-6 col-lg-3">
 				<section class="product-box">
-					<a href="/products/<%=comics[i].id %>">
+					<a href="/products/<%=products[i].id_product %>">
 						<figure class="product-box_image">
-							<img src="<%=comics[i].img %>" alt="cafetera moulinex">
+							<img src="<%=products[i].image_product %>" alt="cafetera moulinex">
 						</figure>
 						<article class="product-box_data">
-							<h2><%= comics[i].nombre %></h2>
-							<p> <%= comics[i].descripcion %> </p>
-							<p> <%= comics[i].fecha %></p>
+							<h2><%= products[i].name_product %></h2>
+							<p> <%= products[i].description %> </p>
+							<p> <%= products[i].created_at %></p>
 						</article>
 					</a>
 				</section>
