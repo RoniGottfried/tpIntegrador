@@ -47,6 +47,7 @@ const productsController = {
                 
              }
     }, 
+    
 
     detail: function(req, res){
         const id = req.params.id;
