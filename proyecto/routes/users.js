@@ -28,12 +28,12 @@ router.post('/login', userController.loginProcess);
 //logout
 router.post('/logout', userController.logout);
 
-// Perfil
-router.get ('/perfil/:id?', userController.perfil);
-
 // Perfil Edit
 router.get('/perfil-edit/:id', userController.perfilEdit);
 router.post('/perfil-edit/profileStore', userController.perfilStore)
+
+// Perfil
+router.get ('/perfil/:id?', userController.perfil);
 
 
 module.exports = router;

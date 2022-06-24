@@ -8,13 +8,9 @@ const user = db.Users;
 const productsController = {
 
     
-    
     add: function (req, res) {
         //res.send("HOLAA");
         return res.render('product-add');
-    },
-    add2: function (req, res) {
-        return res.send("HOLAADD222222222222222222222");
     },
 
     productProcess: function(req, res){
